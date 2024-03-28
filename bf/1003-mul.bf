@@ -1,9 +1,8 @@
-,          ; Read first digit from input and store in memory cell 0
->,         ; Move to the next memory cell (cell 1)
-,          ; Read second digit from input and store in memory cell 1
-[          ; Start loop to multiply
-    <-     ; Move back to cell 0
-    [->+<] ; Multiply cell 0 by cell 1 and store result in cell 0
-    >-     ; Move to the next memory cell (cell 2) and decrement its value
-]          ; End loop when cell 2 (the second digit) reaches zero
-<.         ; Move back to cell 0 and output the result as ASCII character
+,>            ; Read first digit from stdin and move to cell 1
+>,            ; Read second digit from stdin and move to cell 2
+[             ; Start loop to multiply
+  [->+>+<<]   ; Move to cell 1 and duplicate its value to cell 3 and cell 4
+  >>[-<<+>>]  ; Move to cell 2, multiply it by the value in cell 3, and store the result in cell 2
+  <           ; Move back to cell 1
+]             ; End loop when the value in cell 1 reaches zero
+>.            ; Move to cell 2 and output its value as a character
